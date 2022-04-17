@@ -13,6 +13,7 @@ class Parser:
         self.asset = asset
         self.tickers: list = tickers
         self.driver = None
+        # There might be some problems with initializing it in linux
         try:
             self.init_driver()
         except:
@@ -20,9 +21,14 @@ class Parser:
             self.init_driver()
 
     def init_driver(self, wind=False):
+        """
+        Initializing webdriver as Edge for Windows or Chrome for linux
+        """
+        # msedge driver for windows
         if wind:
             self.driver = webdriver.Edge()
         else:
+            # Chrome driver for linux
             chrome_options = Options()
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--headless')
@@ -32,6 +38,9 @@ class Parser:
         self.driver.quit()
 
     def parse_page(self, sub=''):
+        """
+        Getting page via webdriver
+        """
         found = False
         while not found:
             try:
@@ -52,7 +61,10 @@ class Parser:
             return soup
 
     def parse(self):
-        # Parsing tickers first of all
+        """
+        Looking for the best exchange offer in each of tickers from the list, returning summary
+        """
+        # Parsing ticker's pages
         summaries = []
         for ticker in self.tickers:
             if ticker["name"] == 'bittorrent':
@@ -61,6 +73,7 @@ class Parser:
             # Creating a unique url for each pair
             new_url = f'{self.asset}-to-{ticker["name"]}.html'
             try:
+                # Looking for the best exchange offer
                 page = self.parse_page(new_url)
                 exchanges = page.find('div', {'id': 'rates_block'})
                 best = exchanges.find('tbody').find('tr')
