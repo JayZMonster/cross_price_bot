@@ -4,6 +4,9 @@ from general import main
 
 
 def start():
+    """
+    Creating processes for each group of tickers
+    """
     procs = []
     print('Starting processes')
     for i in range(len(proc_lists)):
