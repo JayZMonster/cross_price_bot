@@ -1,6 +1,7 @@
 import multiprocessing as mp
-from config import proc_lists
-from general import main
+
+from utils.config import proc_lists
+from utils.general import main
 
 
 def start():
