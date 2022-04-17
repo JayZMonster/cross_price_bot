@@ -6,5 +6,6 @@
 - BeatifulSoup4
 - python-binance
 # Начало работы
-- В файле config.py вставить токен своего telegram-бота, указать свой chat-id Telegram(получить можно у @username_to_id_bot), установить take-profit
+- В config.py вставить токен своего telegram-бота, указать свой chat-id Telegram(получить можно у @username_to_id_bot), установить take-profit
+- В parser.py указать веб-драйвер для window или для linux
 - Запустить manage.py
