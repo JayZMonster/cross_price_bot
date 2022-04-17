@@ -15,6 +15,9 @@ class BinanceParser:
         self.client = Client(self.api_key, self.api_secret)
 
     def get_cost(self, ticker='USDTRUB'):
+        """
+        Getting ticker's last price
+        """
         try:
             ticker = self.client.get_ticker(symbol=ticker)
             return ticker['lastPrice']
@@ -22,6 +25,9 @@ class BinanceParser:
             print(e)
 
     def get_all_tickers(self, _tickers: List[dict]):
+        """
+        Generating list of ticker's prices
+        """
         all_prices = []
         for ticker in _tickers:
             semi_ticker = ticker['ticker']['ticker']
@@ -32,11 +38,11 @@ class BinanceParser:
         return all_prices
 
 
-if __name__ == '__main__':
-    bp = BinanceParser('', '')
-    tickers = [{
-        'ticker': {
-            'ticker': 'BCH'
-        }
-    }]
-    print(bp.get_usd_p2p())
+#if __name__ == '__main__':
+ #   bp = BinanceParser('', '')
+  #  tickers = [{
+   #     'ticker': {
+   #         'ticker': 'BCH'
+   #     }
+   # }]
+   # print(bp.get_usd_p2p())
