@@ -1,13 +1,8 @@
 import multiprocessing as mp
-
-from utils.config import proc_lists
-from utils.general import main
-
+from config import proc_lists
+from general import main
 
 def start():
-    """
-    Creating processes for each group of tickers
-    """
     procs = []
     print('Starting processes')
     for i in range(len(proc_lists)):
